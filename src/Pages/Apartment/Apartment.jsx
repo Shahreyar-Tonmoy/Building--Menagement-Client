@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 
+
 const Apartment = () => {
     const [showCard, setShowCard] = useState("all");
 
@@ -10,21 +11,16 @@ const Apartment = () => {
 
     return (
         <>
-            <section className=" pb-12 px-8  max-w-screen-xl mx-auto lg:pb-[90px] dark:bg-dark">
+            <section className=" pb-12 px-8 mt-10  max-w-screen-xl mx-auto lg:pb-[90px] dark:bg-dark">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full px-4">
                             <div className="mx-auto mb-[60px] max-w-[510px] text-center">
-                                <span className="text-primary mb-2 block text-lg font-semibold">
-                                    Our Portfolio
-                                </span>
-                                <h2 className="text-dark mb-3 text-3xl leading-[1.208] font-bold sm:text-4xl md:text-[40px]">
-                                    Our Recent Projects
-                                </h2>
-                                <p className="text-body-color text-base dark:text-dark-6">
-                                    There are many variations of passages of Lorem Ipsum available
-                                    but the majority have suffered alteration in some form.
-                                </p>
+
+                                <hr className="border border-5 border-black w-2/3  mx-auto " />
+                                <h1 className="text-3xl my-3 font-semibold text-center text-blue-500">Our All Apartment</h1>
+                                <hr className="border border-5  border-black w-2/3  mx-auto " />
+
                             </div>
                         </div>
                     </div>
@@ -36,57 +32,69 @@ const Apartment = () => {
                                     <button
                                         onClick={() => handleProject("all")}
                                         className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "all"
-                                                ? "activeClasses bg-primary black"
-                                                : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-black"
+                                            ? "activeClasses bg-primary black"
+                                            : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-black"
                                             }`}
                                     >
-                                        All Projects
+                                        All Apartment
                                     </button>
                                 </li>
                                 <li className="mb-1">
                                     <button
-                                        onClick={() => handleProject("branding")}
-                                        className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "branding"
-                                                ? "activeClasses bg-primary text-black"
-                                                : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-black"
+                                        onClick={() => handleProject("1")}
+                                        className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "1"
+                                            ? "activeClasses bg-primary black"
+                                            : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-black"
                                             }`}
                                     >
-                                        Branding
+                                        Floor no. 1
                                     </button>
                                 </li>
                                 <li className="mb-1">
                                     <button
-                                        onClick={() => handleProject("design")}
-                                        className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "design"
-                                                ? "activeClasses bg-primary text-white"
-                                                : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-white"
+                                        onClick={() => handleProject("2")}
+                                        className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "2"
+                                            ? "activeClasses bg-primary text-black"
+                                            : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-black"
                                             }`}
                                     >
-                                        Design
+                                        Floor no. 2
                                     </button>
                                 </li>
                                 <li className="mb-1">
                                     <button
-                                        onClick={() => handleProject("marketing")}
-                                        className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "marketing"
-                                                ? "activeClasses bg-primary text-white"
-                                                : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-white"
+                                        onClick={() => handleProject("3")}
+                                        className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "3"
+                                            ? "activeClasses bg-primary text-black"
+                                            : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-black"
                                             }`}
                                     >
-                                        Marketing
+                                        Floor no. 3
                                     </button>
                                 </li>
                                 <li className="mb-1">
                                     <button
-                                        onClick={() => handleProject("development")}
-                                        className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "development"
-                                                ? "activeClasses bg-primary text-white"
-                                                : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-white"
+                                        onClick={() => handleProject("4")}
+                                        className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "4"
+                                            ? "activeClasses bg-primary text-black"
+                                            : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-black"
                                             }`}
                                     >
-                                        Development
+                                        Floor no. 4
                                     </button>
                                 </li>
+                                <li className="mb-1">
+                                    <button
+                                        onClick={() => handleProject("5")}
+                                        className={`inline-block rounded-lg py-2 px-5 text-center text-base font-semibold transition md:py-3 lg:px-8 ${showCard === "5"
+                                            ? "activeClasses bg-primary text-black"
+                                            : "inactiveClasses text-body-color dark:text-dark-6 hover:bg-primary hover:text-black"
+                                            }`}
+                                    >
+                                        Floor no. 5
+                                    </button>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -110,7 +118,7 @@ const Apartment = () => {
                         />
                         <PortfolioCard
                             Image="https://i.ibb.co/Xs68kcx/fitted.jpg"
-                            Floor="6"
+                            Floor="3"
                             Block="D"
                             Apartment="18"
                             showCard={showCard}
@@ -135,7 +143,6 @@ export default Apartment;
 
 const PortfolioCard = ({
     showCard,
-    category,
     Image,
     Floor,
     Block,
@@ -145,9 +152,9 @@ const PortfolioCard = ({
     return (
         <>
             <div
-                className={`w-full px-4 md:w-1/2 xl:w-1/3 ${showCard === "all" || showCard === category.toLowerCase()
-                        ? "block"
-                        : "hidden"
+                className={`w-full px-4 md:w-1/2 xl:w-1/3 ${showCard === "all" || showCard === Floor.toLowerCase()
+                    ? "block"
+                    : "hidden"
                     }`}
             >
                 <div className="relative mb-12">
