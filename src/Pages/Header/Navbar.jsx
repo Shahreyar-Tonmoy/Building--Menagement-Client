@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -13,14 +14,34 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import LoginIcon from '@mui/icons-material/Login';
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { AuthContext } from '../../Login/Firebase/AuthProvider';
+import swal from 'sweetalert';
+
 
 const pages = ['Home', 'Apartment', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    const { user, logOut } = React.useContext(AuthContext)
+
+    const hendleSignOut = () => {
+        logOut()
+            .then(() =>{
+                swal("Good job!", "You are successfully logout!", "success");
+
+            } )
+
+
+            .catch(error => console.log(error.massage))
+    }
+
+
+
+
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -37,16 +58,18 @@ function Navbar() {
         setAnchorElUser(null);
     };
 
+    
+
     return (
         <AppBar position="static" sx={{ backgroundColor: "white" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    
                     <Typography
                         variant="h6"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -135,7 +158,7 @@ function Navbar() {
 
 
                         <NavLink
-                            to="/"
+                            to="/apartment"
                             className={({ isActive, isPending }) =>
                                 isPending ? "pending" : isActive ? "text-blue-500 underline" : ""
                             }
@@ -150,8 +173,11 @@ function Navbar() {
                         </NavLink>
 
 
-                        <NavLink
-                            to="/"
+                        {
+                            user ? <></> : <>
+
+                            <NavLink
+                            to="/SignIn"
                             className={({ isActive, isPending }) =>
                                 isPending ? "pending" : isActive ? "text-blue-600 underline" : ""
                             }
@@ -163,14 +189,17 @@ function Navbar() {
                         >
                             <LoginIcon></LoginIcon>
                         </Button>
-                        </NavLink>
+                        </NavLink> 
+                            
+                            </>
+                        }
 
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Profile">
+                        <Tooltip title={user?.displayName}>
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Remy Sharp" src={user?.photoURL} />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -189,11 +218,15 @@ function Navbar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
+                            
+                                <div className='flex flex-col px-5 gap-1'>
+                                    <Typography textAlign="center">{user?.displayName}</Typography>
+                                    <Typography textAlign="center">Dashboard</Typography>
+                                    {
+                                        user ? <><button onClick={hendleSignOut} textAlign="center">Log Out</button></> : ""
+                                    }
+                                </div>
+                            
                         </Menu>
                     </Box>
                 </Toolbar>
