@@ -19,6 +19,7 @@ import axios from 'axios';
 import { AuthContext } from './Firebase/AuthProvider';
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Social from './Social';
 
 
 
@@ -102,45 +103,45 @@ export default function SignIn() {
         );
     };
 
-    const hendleGoogle = () => {
+    // const hendleGoogle = () => {
 
-        SignInWithGoogle()
-            .then(result => {
-                const user = (result.user)
+    //     SignInWithGoogle()
+    //         .then(result => {
+    //             const user = (result.user)
 
-                // axios.post(`https://assignment-11-server-side-one.vercel.app/jwt`, user, { withCredentials: true })
-                //     .then(res => {
-                //         console.log(res.data);
-                //         if (res.data.success) {
-                //             swal("Good job!", "You are sign in with google!", "success");
+    //             // axios.post(`https://assignment-11-server-side-one.vercel.app/jwt`, user, { withCredentials: true })
+    //             //     .then(res => {
+    //             //         console.log(res.data);
+    //             //         if (res.data.success) {
+    //             //             swal("Good job!", "You are sign in with google!", "success");
 
-                //         }
+    //             //         }
 
-                // navigate(location?.state ? location?.state : "/")
-
-
-                //     })
+    //             // navigate(location?.state ? location?.state : "/")
 
 
-
-                if (result.user) {
-                    swal("Good job!", "You are sign in with google!", "success");
-
-                }
-                if (result.user) {
-                    navigate(location?.state ? location?.state : "/")
-                }
+    //             //     })
 
 
-            })
-            .catch(error => {
-                console.log(error.massage);
-                if (error.massage) {
-                    swal("Error!", `{${error.massage}}`, "error");
-                }
-            });
 
-    }
+    //             if (result.user) {
+    //                 swal("Good job!", "You are sign in with google!", "success");
+
+    //             }
+    //             if (result.user) {
+    //                 navigate(location?.state ? location?.state : "/")
+    //             }
+
+
+    //         })
+    //         .catch(error => {
+    //             console.log(error.massage);
+    //             if (error.massage) {
+    //                 swal("Error!", `{${error.massage}}`, "error");
+    //             }
+    //         });
+
+    // }
 
 
 
@@ -228,9 +229,10 @@ export default function SignIn() {
                         <Grid>
 
 
-                            <Button sx={{ mt: 5, mb: 2 }} onClick={hendleGoogle} variant="text" startIcon={<img src="https://docs.material-tailwind.com/icons/google.svg" alt="metamask" width={30} />}>
+                            {/* <Button sx={{ mt: 5, mb: 2 }} onClick={hendleGoogle} variant="text" startIcon={<img src="https://docs.material-tailwind.com/icons/google.svg" alt="metamask" width={30} />}>
                                 Continue with Google
-                            </Button>
+                            </Button> */}
+                            <Social></Social>
 
 
                         </Grid>

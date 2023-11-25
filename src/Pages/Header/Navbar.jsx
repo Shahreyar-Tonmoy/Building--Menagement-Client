@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import LoginIcon from '@mui/icons-material/Login';
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../Login/Firebase/AuthProvider';
 import swal from 'sweetalert';
 
@@ -25,13 +25,18 @@ const pages = ['Home', 'Apartment', 'Blog'];
 function Navbar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const Navigate = useNavigate()
+    const location = useLocation()
 
     const { user, logOut } = React.useContext(AuthContext)
 
     const hendleSignOut = () => {
         logOut()
             .then(() =>{
-                swal("Good job!", "You are successfully logout!", "success");
+                swal("Good job!", "You are successfully logout!", "success") &&
+                
+                    Navigate(location?.state ? location?.state : "/")
+                
 
             } )
 
@@ -221,7 +226,7 @@ function Navbar() {
                             
                                 <div className='flex flex-col px-5 gap-1'>
                                     <Typography textAlign="center">{user?.displayName}</Typography>
-                                    <Typography textAlign="center">Dashboard</Typography>
+                                    <Link to={"/dashboard/agreementRequest"}><Typography textAlign="center">Dashboard</Typography></Link>
                                     {
                                         user ? <><button onClick={hendleSignOut} textAlign="center">Log Out</button></> : ""
                                     }

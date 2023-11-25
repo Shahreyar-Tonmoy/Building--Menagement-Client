@@ -2,6 +2,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "./Firebase/AuthProvider";
 import { useContext } from "react";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 
 const PrivateRoute = ({children}) => {
@@ -9,7 +10,13 @@ const PrivateRoute = ({children}) => {
     const location = useLocation()
    
     if(loading){
-        return <div className="flex justify-center items-center"><progress className=" progress w-56"></progress></div>
+        return <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+
+    >
+        <CircularProgress color="inherit" />
+    </Backdrop>
     }
     if(user){
         return children

@@ -15,7 +15,7 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import swal from 'sweetalert';
+
 import axios from 'axios';
 import { AuthContext } from './Firebase/AuthProvider';
 
@@ -23,6 +23,10 @@ import { AuthContext } from './Firebase/AuthProvider';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { styled } from '@mui/material/styles';
+import UseAxiosPublic from '../Components/Hooks/UseAxiosPublic';
+import Swal from 'sweetalert2';
+import swal from 'sweetalert';
+import Social from './Social';
 
 
 
@@ -43,10 +47,14 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
 
-    const { signInUser, SignInWithGoogle } = React.useContext(AuthContext)
+    const { SignInWithGoogle,createUser, updateUserInfo } = React.useContext(AuthContext)
 
     const navigate = useNavigate()
     const location = useLocation()
+   const axiosPublic =UseAxiosPublic()
+    
+    const [error, setError] = React.useState("")
+    const [errorMassage, setErrorMassage] = React.useState()
 
 
 
@@ -54,14 +62,76 @@ export default function SignIn() {
 
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
         const email = data.get("email")
+        const photo = data.get("photo")
         
         const name = data.get("name")
         const password = data.get("password")
-        console.log(email, password, name);
+        console.log(email, password,photo, name);
+
+
+         if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}/.test(password)) {
+            setError("Minimum six characters, at least one letter, one number and one special character");
+            swal("Error!", `Minimum six characters, at least one letter, one number and one special character`, "error");
+
+        }
+        else {
+            setError("")
+            if (email) {
+                createUser(email, password)
+                    .then(result => {
+                        console.log(result.user);
+                        updateUserInfo({
+                            displayName: name, photoURL: photo
+
+                        })
+                        .then(()=>{
+                            const userInfo ={
+                                Name: name,
+                                Email: email
+                            }
+                            console.log(userInfo);
+
+                            axiosPublic.post("/users",userInfo)
+                            .then(res =>{
+                                console.log(res.data);
+                                if(res.data.insertedId){
+                                    swal("Thanks For!", "Register!", "success");
+                            
+
+                            e.target.reset()
+                            navigate(location?.state ? location?.state : "/")
+
+                                }
+                            })
+                            
+
+
+                        })
+
+
+
+                       
+
+
+                    })
+                    .catch(error => {
+                        setErrorMassage(error.message);
+                        setErrorMassage(errorMassage);
+                        if (error) {
+                            swal("Error!", errorMassage, "error");
+                        }
+
+
+                    })
+
+            }
+
+        }
 
 
 
@@ -72,45 +142,57 @@ export default function SignIn() {
 
     };
 
-    const hendleGoogle = () => {
+    // const hendleGoogle = () => {
 
-        SignInWithGoogle()
-            .then(result => {
-                const user = (result.user)
+    //     SignInWithGoogle()
+    //         .then(result => {
+    //             const users = (result.user)
+    //             console.log(result.user);
 
-                // axios.post(`https://assignment-11-server-side-one.vercel.app/jwt`, user, { withCredentials: true })
-                //     .then(res => {
-                //         console.log(res.data);
-                //         if (res.data.success) {
-                //             swal("Good job!", "You are sign in with google!", "success");
+    //             // axios.post(`https://assignment-11-server-side-one.vercel.app/jwt`, user, { withCredentials: true })
+    //             //     .then(res => {
+    //             //         console.log(res.data);
+    //             //         if (res.data.success) {
+    //             //             swal("Good job!", "You are sign in with google!", "success");
 
-                //         }
+    //             //         }
 
-                // navigate(location?.state ? location?.state : "/")
-
-
-                //     })
+    //             // navigate(location?.state ? location?.state : "/")
 
 
+    //             //     })
+    //             const userData ={
+    //                 Name: users?.displayName,
+    //                 Email: users?.email
+    //             }
+    //             console.log(userData);
 
-                if (result.user) {
-                    swal("Good job!", "You are sign in with google!", "success");
+    //             axiosPublic.post("/users",userData)
+    //             .then(res =>{
+    //             //     if(res.data.insertedId){
+    //             //         swal("Good job!", "You are sign in with google!", "success");
+                
 
-                }
-                if (result.user) {
-                    navigate(location?.state ? location?.state : "/")
-                }
+                
+    //             // navigate( "/")
+
+    //             //     }
+    //             console.log(res.data);
+    //             })
 
 
-            })
-            .catch(error => {
-                console.log(error.massage);
-                if (error.massage) {
-                    swal("Error!", `{${error.massage}}`, "error");
-                }
-            });
 
-    }
+               
+
+    //         })
+    //         .catch(error => {
+    //             console.log(error.massage);
+    //             if (error.massage) {
+    //                 swal("Error!", `{${error.massage}}`, "error");
+    //             }
+    //         });
+
+    // }
 
 
 
@@ -151,6 +233,16 @@ export default function SignIn() {
                                     label="Your Name"
                                     name="name"
                                     autoComplete="name"
+                                    autoFocus
+                                />
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="photo"
+                                    label="photo"
+                                    name="photo"
+                                    autoComplete="photo"
                                     autoFocus
                                 />
                                 <TextField
@@ -201,9 +293,11 @@ export default function SignIn() {
                             <Grid>
 
 
-                                <Button sx={{ mt: 5, mb: 2 }} onClick={hendleGoogle} variant="text" startIcon={<img src="https://docs.material-tailwind.com/icons/google.svg" alt="metamask" width={30} />}>
+                                {/* <Button sx={{ mt: 5, mb: 2 }} onClick={hendleGoogle} variant="text" startIcon={<img src="https://docs.material-tailwind.com/icons/google.svg" alt="metamask" width={30} />}>
                                     Continue with Google
-                                </Button>
+                                </Button> */}
+
+                                <Social></Social>
 
 
                             </Grid>
