@@ -68,10 +68,10 @@ export default function SignIn() {
         const data = new FormData(e.currentTarget);
         const email = data.get("email")
         const photo = data.get("photo")
-        
+        // const Image = data.get("Image")
         const name = data.get("name")
         const password = data.get("password")
-        console.log(email, password,photo, name);
+        console.log(email, password,photo,Image, name);
 
 
          if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}/.test(password)) {
@@ -92,7 +92,8 @@ export default function SignIn() {
                         .then(()=>{
                             const userInfo ={
                                 Name: name,
-                                Email: email
+                                Email: email,
+                                Role: "user"
                             }
                             console.log(userInfo);
 
@@ -265,6 +266,7 @@ export default function SignIn() {
                                     id="password"
                                     autoComplete="current-password"
                                 />
+                                {/* <input name='Image' type="file" className="file-input mt-2 rounded-md file-input-bordered w-full " /> */}
                                 <FormControlLabel
                                     control={<Checkbox value="remember" color="primary" />}
                                     label="Remember me"

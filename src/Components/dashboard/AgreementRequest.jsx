@@ -13,6 +13,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
 import UseAxios from '../Hooks/UseAxios';
 import swal from 'sweetalert';
+import dateTime from 'date-time';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -38,6 +39,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 export default function AgreementRequest() {
+  const axiosSecure = UseAxios()
 
  
 
@@ -53,7 +55,7 @@ const { isPending, isError, error, data,refetch } = useQuery({
     }
 
 })
-console.log(data);
+// console.log(data);
  
 
 if (isPending) {
@@ -73,16 +75,21 @@ if (isError) {
 }
 
 const filter = data.filter(e => e?.Status === "pending")
-console.log(filter);
+// console.log(filter);
 
-const axiosSecure = UseAxios()
+
 const Status = "checked"
 const Role = "Member"
-const update = {Status}
-const UpdateRole = {Role}
 
-const hendleAccept =(_id,email)=>{
-    
+
+const AcceptDate = (dateTime());
+const update = {Status,AcceptDate}
+
+
+
+const hendleAccept =(_id,email,name)=>{
+  const UpdateRole = {Role,name}
+  // console.log(name);
     axiosSecure.put(`/rents/${_id}`,update)
     .then((res)=>{
         console.log(res);
@@ -171,7 +178,7 @@ const hendleDelete =(_id)=>{
               
               <StyledTableCell align="right">{data.Title}</StyledTableCell>
               <StyledTableCell align="right">{data.date}</StyledTableCell>
-              <StyledTableCell align="right"><button onClick={()=>hendleAccept(data._id,data.email)} className='btn bg-green-300 hover:bg-green-500 btn-circle'><CheckIcon></CheckIcon></button></StyledTableCell>
+              <StyledTableCell align="right"><button onClick={()=>hendleAccept(data._id,data.email,data.name)} className='btn bg-green-300 hover:bg-green-500 btn-circle'><CheckIcon></CheckIcon></button></StyledTableCell>
               <StyledTableCell align="right"><button onClick={()=>hendleDelete(data._id)} className='btn bg-red-300 hover:bg-red-500 btn-circle'><ClearIcon></ClearIcon></button></StyledTableCell>
               
             </StyledTableRow>

@@ -19,11 +19,12 @@ import {
 
 } from "firebase/auth";
 import app from "./Firebase.init";
-import axios from "axios";
+import UseAxiosPublic from "../../Components/Hooks/UseAxiosPublic";
+
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
-
+const axiosPublic = UseAxiosPublic()
 const googleProvider = new GoogleAuthProvider()
 
 const AuthProvider = ({ children }) => {
@@ -61,22 +62,21 @@ const AuthProvider = ({ children }) => {
             setUser(currentUser)
             setLoading(false)
 
-            // if(currentUser){
+            if(currentUser){
+                const userInfo = {email: currentUser.email}
+                axiosPublic.post('/jwt',userInfo)
+                .then(res =>{
+                    if(res.data.token){
+                        localStorage.setItem("access-token",res.data.token)
+                    }
+                })
                 
 
-            //     axios.post("https://assignment-11-server-side-one.vercel.app/jwt", loggedUser,{withCrendentials: true})
-            //     .then(res =>{
-            //         console.log(res.data);
-            //     })
 
-
-            // }
-            // else{
-            //     axios.post('https://assignment-11-server-side-one.vercel.app/logout',loggedUser,{withCredentials: true})
-            //     .then(res =>{
-            //         console.log(res.data);
-            //     })
-            // }
+            }
+            else{
+               localStorage.removeItem("access-token")
+            }
 
             return () => {
                 unSubscribe()
@@ -86,7 +86,7 @@ const AuthProvider = ({ children }) => {
         
 
 
-    }, [])
+    }, [axiosPublic])
 
     // useEffect(() => {
     //     const unSubscribe = onAuthStateChanged(auth, currentUser => {

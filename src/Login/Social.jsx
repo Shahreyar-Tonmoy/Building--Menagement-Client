@@ -21,7 +21,8 @@ const Social = () => {
 
                 const userData ={
                     Name: users?.displayName,
-                    Email: users?.email
+                    Email: users?.email,
+                    Role: "user"
                 }
                 console.log(userData);
 

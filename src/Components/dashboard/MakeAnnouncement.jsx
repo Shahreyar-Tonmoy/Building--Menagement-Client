@@ -5,6 +5,7 @@ import dateTime from 'date-time';
 
 
 const MakeAnnouncement = () => {
+  const axiosSecure = UseAxios()
 
     const hendleAnnounce =(e)=>{
         e.preventDefault()
@@ -17,7 +18,7 @@ const MakeAnnouncement = () => {
         
 
 
-        const axiosSecure = UseAxios()
+        
     axiosSecure.post("/announcement",Announce)
             
             .then(res => {

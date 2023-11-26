@@ -226,7 +226,7 @@ function Navbar() {
                             
                                 <div className='flex flex-col px-5 gap-1'>
                                     <Typography textAlign="center">{user?.displayName}</Typography>
-                                    <Link to={"/dashboard/agreementRequest"}><Typography textAlign="center">Dashboard</Typography></Link>
+                                    <Link to={"/dashboard"}><Typography textAlign="center">Dashboard</Typography></Link>
                                     {
                                         user ? <><button onClick={hendleSignOut} textAlign="center">Log Out</button></> : ""
                                     }

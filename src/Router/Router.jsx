@@ -14,6 +14,9 @@ import AgreementRequest from "../Components/dashboard/AgreementRequest";
 import MemberManage from "../Components/dashboard/MemberManage";
 import Announcement from "../Components/dashboard/Announcement";
 import MakeAnnouncement from "../Components/dashboard/MakeAnnouncement";
+import UserOnlyProfile from "../Components/dashboard/UserOnlyProfile";
+import MemberProfile from "../Components/dashboard/MemberProfile";
+import AnnouncementCard from "../Components/dashboard/Announcement";
 
 
 
@@ -64,6 +67,10 @@ const Router = createBrowserRouter([
         path : "/dashboard",
         element : <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children : [
+
+            // admin
+
+
             {
                 path : "/dashboard/adminProfile",
                 element: <UserProfile></UserProfile>,
@@ -76,14 +83,34 @@ const Router = createBrowserRouter([
                 path : "/dashboard/manageMembers",
                 element: <MemberManage></MemberManage>
             },
-            {
-                path : "/dashboard/Announcement",
-                element: <Announcement></Announcement>
-            },
+            
             {
                 path : "/dashboard/makeAnnouncement",
                 element: <MakeAnnouncement></MakeAnnouncement>
             },
+            // admin end
+
+            // member
+
+            {
+                path : "/dashboard/member/profile",
+                element: <MemberProfile></MemberProfile>
+            },
+
+
+            // user
+
+            {
+                path : "/dashboard/user/profile",
+                element: <UserOnlyProfile></UserOnlyProfile>
+            },
+            {
+                path : "/dashboard/Announcement",
+                element: <AnnouncementCard></AnnouncementCard>
+            },
+
+
+
         ]
     },
     

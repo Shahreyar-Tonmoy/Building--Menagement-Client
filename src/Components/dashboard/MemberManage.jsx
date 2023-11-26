@@ -48,14 +48,18 @@ export default function MemberManage() {
 const { isPending, isError, error, data,refetch } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
-        const res = await fetch("http://localhost:5000/users")
+        const res = await fetch("http://localhost:5000/users",
+        
+        )
         return res.json()
     }
 
 })
 
+// console.log(data);
+
 const filter = data?.filter(e => e.Role == "Member")
-console.log(filter);
+// console.log(filter);
 
 
 // console.log(data);
@@ -126,7 +130,7 @@ const hendleDelete =(_id)=>{
           </TableRow>
         </TableHead>
         <TableBody>
-          {filter.map((filter) => (
+          {filter?.map((filter) => (
             <StyledTableRow key={filter.name}>
               <StyledTableCell component="th" scope="row">
                 {filter.Name}

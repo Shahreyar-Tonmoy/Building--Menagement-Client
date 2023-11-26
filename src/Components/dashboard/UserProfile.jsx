@@ -3,8 +3,15 @@ import { AuthContext } from '../../Login/Firebase/AuthProvider';
 
 
 
+
 const UserProfile = () => {
+
+    
+
     const { user } = useContext(AuthContext)
+
+
+
     return (
         <>
             <div>

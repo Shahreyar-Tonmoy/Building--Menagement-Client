@@ -6,40 +6,63 @@ import { AuthContext } from "../../Login/Firebase/AuthProvider";
 import swal from "sweetalert";
 import { useLocation, useNavigate } from "react-router-dom";
 import dateTime from 'date-time';
+import Swal from "sweetalert2";
 
 
-const ApartmentCard = ({data}) => {
-    const {_id,ImageURL,Title,Floor,Block,ApartmentNo}=data
-    const {user}=useContext(AuthContext)
+const ApartmentCard = ({ data }) => {
+
+    const axiosSecure = UseAxios()
+
+    const { _id, ImageURL, Title, Floor, Block, ApartmentNo } = data
+    const { user } = useContext(AuthContext)
     const email = user?.email
-    const name = user?.displayName 
-    const Status = "pending"   
+    const name = user?.displayName
+    const Status = "pending"
     const Navigate = useNavigate()
     const location = useLocation()
     const date = (dateTime());
 
 
 
-   const hendleClick =(_id,ImageURL,Title,Floor,Block,ApartmentNo)=>{
-    const Agreement = {ImageURL,date,Title,Floor,Block,ApartmentNo,email,name,Status};
-    const axiosSecure = UseAxios()
-    axiosSecure.post("/rents",Agreement)
-    .then((res)=>{
-        console.log(res.data);
-        if(res.data.insertedId){
-            swal("Thanks!", "Your Agreement Is Pending !", "success");
-        }
+    const hendle=()=>{
+        Swal.fire({
+            title: "Are you sign in",
+            text: "Please sign in and continue!",
+            icon: "warning",
+            
+            confirmButtonColor: "#3085d6",
+            
+            confirmButtonText: "Sign In!"
+          }).then(() => {
+            Navigate("/signin")
+          });
+    }
 
-        if (res.data.insertedId) {
-            Navigate(location?.state ? location?.state : "/")
-        }
-    })
 
 
-   }
-    
 
-    
+
+
+    const hendleClick = (_id, ImageURL, Title, Floor, Block, ApartmentNo) => {
+        const Agreement = { ImageURL, date, Title, Floor, Block, ApartmentNo, email, name, Status };
+
+        axiosSecure.post("/rents", Agreement)
+            .then((res) => {
+                console.log(res.data);
+                if (res.data.insertedId) {
+                    swal("Thanks!", "Your Agreement Is Pending !", "success");
+                }
+
+                if (res.data.insertedId) {
+                    Navigate(location?.state ? location?.state : "/")
+                }
+            })
+
+
+    }
+
+
+
 
 
 
@@ -59,12 +82,23 @@ const ApartmentCard = ({data}) => {
                             <h3 className="text-dark dark:text-dark mb-5 text-lg font-bold">Block name. {Block}</h3>
                         </div>
                         <h3 className="text-dark dark:text-dark mb-5 text-lg font-bold">Apartment no. {ApartmentNo}</h3>
-                        <button onClick={()=>hendleClick(_id,ImageURL,Title,Floor,Block,ApartmentNo)}
+                        {
+                            user ? <>
+                                <button onClick={() => hendleClick(_id, ImageURL, Title, Floor, Block, ApartmentNo)}
 
-                            className="text-body-color btn dark:text-dark-6 hover:border-blue-500 hover:bg-blue-500 inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-white"
-                        >
-                            Agreement
-                        </button>
+                                    className="text-body-color btn dark:text-dark-6 hover:border-blue-500 hover:bg-blue-500 inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-white"
+                                >
+                                    Agreement
+                                </button>
+                            </>:<>
+                            <button onClick={hendle}
+
+                                    className="text-body-color btn dark:text-dark-6 hover:border-blue-500 hover:bg-blue-500 inline-block rounded-md border border-stroke dark:border-dark-3 py-[10px] px-7 text-sm font-medium transition hover:text-white"
+                                >
+                                    Agreement
+                                </button>
+                            </>
+                        }
                     </div>
                 </div>
             </div>
