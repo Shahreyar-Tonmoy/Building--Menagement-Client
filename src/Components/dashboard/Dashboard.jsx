@@ -41,8 +41,8 @@ const Dashboard = () => {
 
     return (
         <Layout className='h-screen'>
-            <Sider trigger={null} collapsible collapsed={collapsed}>
-                <div className="demo-logo-vertical mx-auto" />
+            <Sider trigger={null}  collapsible collapsed={collapsed}>
+                <div className="demo-logo-vertical  mx-auto" />
                 <Button
                     className='text-white border-none pl-7 mt-5 mb-2 hover:text-white'
 

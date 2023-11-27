@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
+
 import AdbIcon from '@mui/icons-material/Adb';
 import LoginIcon from '@mui/icons-material/Login';
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
@@ -19,7 +19,8 @@ import { AuthContext } from '../../Login/Firebase/AuthProvider';
 import swal from 'sweetalert';
 
 
-const pages = ['Home', 'Apartment', 'Blog'];
+
+
 
 
 function Navbar() {
@@ -30,15 +31,23 @@ function Navbar() {
 
     const { user, logOut } = React.useContext(AuthContext)
 
+    
+      
+
+
+
     const hendleSignOut = () => {
         logOut()
-            .then(() =>{
+            .then(() => {
                 swal("Good job!", "You are successfully logout!", "success") &&
-                
-                    Navigate(location?.state ? location?.state : "/")
-                
 
-            } )
+                    Navigate(location?.state ? location?.state : "/")
+
+                setAnchorElUser(null);
+
+
+
+            })
 
 
             .catch(error => console.log(error.massage))
@@ -64,12 +73,14 @@ function Navbar() {
     };
 
     
+      
+
 
     return (
         <AppBar position="static" sx={{ backgroundColor: "white" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    
+
                     <Typography
                         variant="h6"
                         noWrap
@@ -117,19 +128,46 @@ function Navbar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
+                            <NavLink
+                                to="/"
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "text-blue-500 underline" : ""
+                                }
+                            >
+                                <Button
+
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, display: 'flex', }}
+                                >
+                                    Home
+                                </Button>
+                            </NavLink>
+
+
+
+                            <NavLink
+                                to="/apartment"
+                                className={({ isActive, isPending }) =>
+                                    isPending ? "pending" : isActive ? "text-blue-500 underline" : ""
+                                }
+                            >
+                                <Button
+
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, display: 'flex', }}
+                                >
+                                    Apartment
+                                </Button>
+                            </NavLink>
                         </Menu>
                     </Box>
                     <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
+                        href="/"
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -141,7 +179,7 @@ function Navbar() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        <img className='w-40' src="https://i.ibb.co/VV6F9QB/Screenshot-2023-11-23-222701-removebg-preview.png" alt="" />
                     </Typography>
                     <Box sx={{ flexGrow: 1, mr: 16, justifyContent: "center", display: { xs: 'none', md: 'flex' } }}>
 
@@ -168,45 +206,51 @@ function Navbar() {
                                 isPending ? "pending" : isActive ? "text-blue-500 underline" : ""
                             }
                         >
-                        <Button
+                            <Button
 
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2,  display: 'flex', }}
-                        >
-                            Apartment
-                        </Button>
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, display: 'flex', }}
+                            >
+                                Apartment
+                            </Button>
                         </NavLink>
 
 
-                        {
-                            user ? <></> : <>
 
-                            <NavLink
-                            to="/SignIn"
-                            className={({ isActive, isPending }) =>
-                                isPending ? "pending" : isActive ? "text-blue-600 underline" : ""
-                            }
-                        >
-                        <Button
-
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, display: 'flex', }}
-                        >
-                            <LoginIcon></LoginIcon>
-                        </Button>
-                        </NavLink> 
-                            
-                            </>
-                        }
 
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title={user?.displayName}>
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src={user?.photoURL} />
-                            </IconButton>
-                        </Tooltip>
+
+                        {
+                            user ? <>
+                                <Tooltip title={user?.displayName}>
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt="Remy Sharp" src={user?.photoURL} />
+                                    </IconButton>
+                                </Tooltip>
+                            </> : <>
+
+                                <NavLink
+                                    to="/SignIn"
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "text-blue-600 underline" : ""
+                                    }
+                                >
+                                    <Button
+
+
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, display: 'flex', }}
+                                    >
+                                        <LoginIcon></LoginIcon>   Login
+                                    </Button>
+                                </NavLink>
+
+                            </>
+                        }
+
+
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
@@ -223,15 +267,18 @@ function Navbar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            
-                                <div className='flex flex-col px-5 gap-1'>
-                                    <Typography textAlign="center">{user?.displayName}</Typography>
-                                    <Link to={"/dashboard"}><Typography textAlign="center">Dashboard</Typography></Link>
-                                    {
-                                        user ? <><button onClick={hendleSignOut} textAlign="center">Log Out</button></> : ""
-                                    }
-                                </div>
-                            
+
+                            <div className='flex flex-col px-5 gap-1'>
+                                <Typography textAlign="center">{user?.displayName}</Typography>
+
+                                <Link to={"/dashboard"}><Typography className='btn w-full text-blue-500 btn-link no-underline' textAlign="center">Dashboard</Typography>
+                                </Link>
+                                
+                                {
+                                    user ? <><button className='btn text-blue-500 -mt-3 w-full btn-link no-underline' onClick={hendleSignOut} textAlign="center">Log Out</button></> : ""
+                                }
+                            </div>
+
                         </Menu>
                     </Box>
                 </Toolbar>
