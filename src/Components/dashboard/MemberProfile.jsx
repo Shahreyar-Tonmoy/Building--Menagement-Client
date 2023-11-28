@@ -16,7 +16,7 @@ const MemberProfile = () => {
         }
 
     })
-    // console.log(data);
+    // console.log(filter);
 
     const filter = data?.filter(e => e.Status === "checked")
 
@@ -35,17 +35,17 @@ const MemberProfile = () => {
     }
 
     if (isError) {
-        return <span>Error: {error.message}</span>
+        return <span>Error: {error?.message}</span>
     }
 
-    // console.log(data[0])
+    // console.log(filter[0])
 
     return (
 
         <div className=" mx-auto  overflow-y-scroll h-[90vh]  rounded-lg  p-5">
-            <img className="w-32 h-32 shadow-xl rounded-full mx-auto" src={user.photoURL} alt="Profile picture" />
-            <h2 className="text-center text-2xl font-semibold mt-3">Name: {user.displayName}</h2>
-            <p className="text-center text-gray-600 mt-1">Email: {user.email}</p>
+            <img className="w-32 h-32 shadow-xl rounded-full mx-auto" src={user?.photoURL} alt="Profile picture" />
+            <h2 className="text-center text-2xl font-semibold mt-3">Name: {user?.displayName}</h2>
+            <p className="text-center text-gray-600 mt-1">Email: {user?.email}</p>
 
             <div className="mt-5">
                 <div>
@@ -57,34 +57,32 @@ const MemberProfile = () => {
                                 
                                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
                                     
-                                    <div className="grid grid-cols-1 gap-2 mt-12 sm:grid-cols-3 lg:mt-20   ">
+                                    <div className="  mt-12 lg:mt-20   ">
 
-                                    {
-                                        filter?.map(data=><>
+                                    
                                         
-                                        <div className="transition-all  duration-1000 shadow-2xl bg-white hover:bg-blue-500  hover:shadow-xl m-2 p-4 relative z-40 group  ">
+                                        <div className="transition-all w-96 mx-auto  duration-1000 shadow-2xl bg-white hover:bg-blue-500  hover:shadow-xl m-2 p-4 relative z-40 group  ">
                                             <div className=" absolute  bg-blue-500/50 top-0 left-0 w-24 h-1 z-30  transition-all duration-200   group-hover:bg-white group-hover:w-1/2  ">
                                             </div>
                                             <div className="py-2 px-9 relative  ">
-                                            <img className="w-32 h-32 rounded-full mx-auto" src={data.ImageURL} alt="Profile picture" />
-                                                <h3 className="mt-8 text-md font-semibold text-black group-hover:text-white ">Agreement accept date: {data.AcceptDate.split(" ",1)}
+                                            <img className="w-32 h-32 rounded-full mx-auto" src={filter[0]?.ImageURL} alt="Profile picture" />
+                                                <h3 className="mt-8 text-md font-semibold text-black group-hover:text-white ">Agreement accept date: {filter[0]?.AcceptDate?.split(" ",1)}
                                                 </h3>
 
                                                 <div className="flex my-3 gap-5 justify-around">
-                                                <h3 className=" text-md font-semibold text-black group-hover:text-white ">Floor No: {data.Floor}
+                                                <h3 className=" text-md font-semibold text-black group-hover:text-white ">Floor No: {filter[0]?.Floor}
                                                 </h3>
-                                                <h3 className=" text-md font-semibold text-black group-hover:text-white ">Block name: {data.Block}
+                                                <h3 className=" text-md font-semibold text-black group-hover:text-white ">Block name: {filter[0]?.Block}
                                                 </h3>
                                                 </div>
                                                 <div className="flex my-3 gap-5 justify-around">
-                                                <h3 className=" text-md font-semibold text-black group-hover:text-white ">Apartment No: {data.ApartmentNo}
+                                                <h3 className=" text-md font-semibold text-black group-hover:text-white ">Apartment No: {filter[0]?.ApartmentNo}
                                                 </h3>
                                                 
                                                 </div>
                                             </div>
                                         </div>
-                                        </>)
-                                    }
+                                        
                                         
                                         
                                     </div>

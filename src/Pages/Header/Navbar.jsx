@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import * as React from 'react';
+import { useContext, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,9 +14,17 @@ import Tooltip from '@mui/material/Tooltip';
 
 import AdbIcon from '@mui/icons-material/Adb';
 import LoginIcon from '@mui/icons-material/Login';
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../Login/Firebase/AuthProvider';
 import swal from 'sweetalert';
+// import UserAdmin from '../../Components/Hooks/UserAdmin';
+// import UserMember from '../../Components/Hooks/UseMenber';
+import PrivateRoute from '../../Login/PrivateRoute';
+import UserAdmin from '../../Components/Hooks/UserAdmin';
+import UserMember from '../../Components/Hooks/UseMenber';
+
+
+
 
 
 
@@ -24,15 +32,31 @@ import swal from 'sweetalert';
 
 
 function Navbar() {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
     const Navigate = useNavigate()
-    const location = useLocation()
-
-    const { user, logOut } = React.useContext(AuthContext)
+    
+    const [isAdmin] = UserAdmin()
+    const [isMember] = UserMember()
 
     
-      
+
+
+// const [isAdmin,setIsAdmin] = useState()
+
+    // const location = useLocation()
+
+    const { user, logOut } = useContext(AuthContext)
+
+
+    
+    
+
+
+
+
+
+
 
 
 
@@ -41,7 +65,7 @@ function Navbar() {
             .then(() => {
                 swal("Good job!", "You are successfully logout!", "success") &&
 
-                    Navigate(location?.state ? location?.state : "/")
+                    Navigate("/")
 
                 setAnchorElUser(null);
 
@@ -72,8 +96,8 @@ function Navbar() {
         setAnchorElUser(null);
     };
 
-    
-      
+
+
 
 
     return (
@@ -167,7 +191,7 @@ function Navbar() {
                         noWrap
                         href="/"
                         component="a"
-                        
+
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -224,11 +248,11 @@ function Navbar() {
 
                         {
                             user ? <>
-                                <Tooltip title={user?.displayName}>
+                                <PrivateRoute><Tooltip title={user?.displayName}>
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                         <Avatar alt="Remy Sharp" src={user?.photoURL} />
                                     </IconButton>
-                                </Tooltip>
+                                </Tooltip></PrivateRoute>
                             </> : <>
 
                                 <NavLink
@@ -271,9 +295,29 @@ function Navbar() {
                             <div className='flex flex-col px-5 gap-1'>
                                 <Typography textAlign="center">{user?.displayName}</Typography>
 
-                                <Link to={"/dashboard"}><Typography className='btn w-full text-blue-500 btn-link no-underline' textAlign="center">Dashboard</Typography>
-                                </Link>
+                                  {
+                                    user && isAdmin &&
+                                    <Link to={"/dashboard/adminProfile"}><Typography className='btn w-full text-blue-500 btn-link no-underline' textAlign="center">Dashboard</Typography>
+                                    </Link>
+                                }
+                                {
+                                    user && isMember &&
+                                    <Link to={"/dashboard/member/profile"}><Typography className='btn w-full text-blue-500 btn-link no-underline' textAlign="center">Dashboard</Typography>
+                                    </Link>
+                                }
                                 
+                                {
+                                   user && !!isMember || !!isAdmin  ? "" :
+                                    <Link to={"/dashboard/user/profile"}><Typography className='btn w-full text-blue-500 btn-link no-underline' textAlign="center">Dashboard</Typography>
+                                    </Link> 
+                                }  
+
+
+
+                               {/* <Link to={"/dashboard"}><Typography className='btn w-full text-blue-500 btn-link no-underline' textAlign="center">Dashboard</Typography>
+                                </Link> */}
+
+
                                 {
                                     user ? <><button className='btn text-blue-500 -mt-3 w-full btn-link no-underline' onClick={hendleSignOut} textAlign="center">Log Out</button></> : ""
                                 }

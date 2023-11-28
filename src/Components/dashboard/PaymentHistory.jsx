@@ -13,6 +13,8 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 import UseAxios from '../Hooks/UseAxios';
 import swal from 'sweetalert';
+import { useContext } from 'react';
+import { AuthContext } from '../../Login/Firebase/AuthProvider';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,18 +39,18 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-export default function MemberManage() {
+export default function PaymentHistory() {
 
  
     const axiosSecure = UseAxios()
 
-
+const {user} = useContext(AuthContext)
 
     
 const { isPending, isError, error, data,refetch } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
-        const res = await fetch("http://localhost:5000/users",
+        const res = await fetch("http://localhost:5000/paymentHistory",
         
         )
         return res.json()
@@ -58,7 +60,7 @@ const { isPending, isError, error, data,refetch } = useQuery({
 
 // console.log(data);
 
-const filter = data?.filter(e => e.Role === "Member")
+const filter = data?.filter(e => e.Email === user?.email )
 // console.log(filter);
 
 
@@ -123,22 +125,26 @@ const hendleDelete =(_id)=>{
           <TableRow>
             <StyledTableCell>Name</StyledTableCell>
             <StyledTableCell >Email</StyledTableCell>
-            <StyledTableCell >Role</StyledTableCell>
+            <StyledTableCell >Mounth</StyledTableCell>
+            <StyledTableCell >Transaction Id</StyledTableCell>
+            <StyledTableCell >Time</StyledTableCell>
+            <StyledTableCell >Amount</StyledTableCell>
             
-            <StyledTableCell >Remove </StyledTableCell>
             
           </TableRow>
         </TableHead>
         <TableBody>
           {filter?.map((filter) => (
-            <StyledTableRow key={filter.name}>
+            <StyledTableRow key={filter._id}>
               <StyledTableCell component="th" scope="row">
                 {filter.Name}
               </StyledTableCell>
               <StyledTableCell >{filter.Email}</StyledTableCell>
-              <StyledTableCell >{filter.Role}</StyledTableCell>
-             
-              <StyledTableCell ><button onClick={()=>hendleDelete(filter._id)}  className='btn bg-red-300 hover:bg-red-500 btn-circle'><ClearIcon></ClearIcon></button></StyledTableCell>
+              <StyledTableCell >{filter.Mounth}</StyledTableCell>
+              <StyledTableCell >{filter.TransactionId}</StyledTableCell>
+              <StyledTableCell >{filter.Time}</StyledTableCell>
+              <StyledTableCell >{filter.Price}$</StyledTableCell>
+              
               
             </StyledTableRow>
           ))}

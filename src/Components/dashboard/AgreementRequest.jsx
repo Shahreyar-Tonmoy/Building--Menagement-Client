@@ -75,7 +75,7 @@ if (isError) {
 }
 
 const filter = data.filter(e => e?.Status === "pending")
-// console.log(filter);
+console.log(filter);
 
 
 const Status = "checked"

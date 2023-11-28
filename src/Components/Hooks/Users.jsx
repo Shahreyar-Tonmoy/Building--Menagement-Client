@@ -4,7 +4,7 @@ import UseAxios from "./UseAxios";
 import { useQuery } from "@tanstack/react-query";
 
 
-const User = () => {
+const Users = () => {
     const {user} = useContext(AuthContext)
     const axiosSecure = UseAxios()
     const {data: isUser} = useQuery({
@@ -25,4 +25,4 @@ const User = () => {
 
 };
 
-export default User;
+export default Users;

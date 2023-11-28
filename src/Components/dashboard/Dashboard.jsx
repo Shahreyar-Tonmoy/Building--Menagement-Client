@@ -25,7 +25,7 @@ const Dashboard = () => {
         token: { colorBgContainer },
     } = theme.useToken();
 
-
+    
 
     const [isAdmin] = UserAdmin()
 
@@ -33,7 +33,7 @@ const Dashboard = () => {
     const [isMember] = UserMember()
 
 
-
+    
 
 
 
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
     return (
         <Layout className='h-screen'>
-            <Sider trigger={null}  collapsible collapsed={collapsed}>
+            <Sider trigger={null} collapsible collapsed={collapsed}>
                 <div className="demo-logo-vertical  mx-auto" />
                 <Button
                     className='text-white border-none pl-7 mt-5 mb-2 hover:text-white'
@@ -51,7 +51,10 @@ const Dashboard = () => {
 
                 ><ListIcon></ListIcon></Button>
 
-                <Menu
+                {
+                    isAdmin && 
+
+                    <Menu
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={['2']}
@@ -92,29 +95,81 @@ const Dashboard = () => {
                     {/* member section */}
 
 
-                    {
-                        isMember && <>
+                    
+
+                    
+
+
+                </Menu>
+
+                }
+
+                {/* member */}
+
+
+                {
+                    isMember && 
+
+                    <Menu
+                    theme="dark"
+                    mode="inline"
+                    defaultSelectedKeys={['7']}
+
+                >
+
+                    <Menu.Item key={1} icon={<HomeIcon />}>
+                        <NavLink to={"/"}>Home</NavLink>
+                    </Menu.Item>
+
+                    
 
                             <Menu.Item key={7} icon={<AccountCircleIcon />}>
-                                <NavLink to={"/dashboard/member/profile"}>User Profile</NavLink>
+                                <NavLink to={"/dashboard/member/profile"}>Member Profile</NavLink>
                             </Menu.Item>
                             <Menu.Item key={8} icon={<CreditCardIcon />}>
-                                <NavLink to={"/dashboard/Announcement"}>Make payment</NavLink>
+                                <NavLink to={"/dashboard/makePayment"}>Make payment</NavLink>
                             </Menu.Item>
                             <Menu.Item key={9} icon={<AccountBalanceIcon />}>
-                                <NavLink to={"/dashboard/Announcement"}>Payment History</NavLink>
+                                <NavLink to={"/dashboard/paymentHistory"}>Payment History</NavLink>
                             </Menu.Item>
 
                             <Menu.Item key={10} icon={<CampaignIcon />}>
                                 <NavLink to={"/dashboard/Announcement"}>Announcements</NavLink>
                             </Menu.Item>
-                        </>
-                    }
+                        
+                    
 
-                    {/* user section */}
+                    
 
-                    {
-                        isAdmin || isMember === false && <>
+
+                </Menu>
+
+                }
+
+                {/* user */}
+
+
+                {
+                    isAdmin || isMember === false && 
+
+                    <Menu
+                    theme="dark"
+                    mode="inline"
+                    defaultSelectedKeys={['11']}
+
+                >
+
+                    <Menu.Item key={1} icon={<HomeIcon />}>
+                        <NavLink to={"/"}>Home</NavLink>
+                    </Menu.Item>
+
+                    
+
+
+                    
+
+                    
+                         
 
                             <Menu.Item key={11} icon={<AccountCircleIcon />}>
                                 <NavLink to={"/dashboard/user/profile"}>User Profile</NavLink>
@@ -127,11 +182,13 @@ const Dashboard = () => {
                             </Menu.Item>
 
 
-                        </>
-                    }
+                        
+                    
 
 
                 </Menu>
+
+                }
 
 
             </Sider>
@@ -145,6 +202,10 @@ const Dashboard = () => {
                         background: colorBgContainer,
                     }}
                 >
+
+                    
+
+
                     <Outlet></Outlet>
                 </Content>
             </Layout>

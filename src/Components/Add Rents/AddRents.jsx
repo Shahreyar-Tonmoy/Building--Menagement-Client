@@ -15,8 +15,8 @@ import UseAxios from "../Hooks/UseAxios";
 
 const AddRents = () => {
 
-    const Navigate =useNavigate()
-
+    
+    const axiosSecure = UseAxios()
    
     const {user} =useContext(AuthContext)
     const email=(user?.email);
@@ -25,6 +25,7 @@ const AddRents = () => {
         e.preventDefault()
         const form = e.target
         const Title = form.Title.value
+        const Amount = form.Amount.value
         
         const Floor = form.Floor.value
         const Block = form.Block.value
@@ -34,11 +35,11 @@ const AddRents = () => {
 
 
         const ImageURL = form.ImageURL.value
-        const products = { Title,Floor,Block,ApartmentNo,email, ImageURL }
+        const products = { Title,Floor,Amount, Block,ApartmentNo,email, ImageURL }
         console.log(products);
 
 
-        const axiosSecure = UseAxios()
+        
     axiosSecure.post("/apartments",products)
             
             .then(res => {
@@ -143,6 +144,14 @@ const AddRents = () => {
 
 
                                 <input name="ImageURL" type="text" placeholder="Enter Image URL" className="input lg:w-[500px] input-bordered" required />
+
+
+                                <label className="label">
+                                    <span className="text-lg">Amount</span>
+                                </label>
+
+
+                                <input name="Amount" type="number" placeholder="Enter Amount" className="input lg:w-[500px] input-bordered" required />
 
 
                                 {/* <input name="photoURL" type="file" className="file-input file-input-bordered lg:w-[500px] file-input-info w-full max-w-xs" /> */}

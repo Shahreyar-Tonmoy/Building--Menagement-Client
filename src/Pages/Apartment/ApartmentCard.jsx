@@ -13,7 +13,7 @@ const ApartmentCard = ({ data }) => {
 
     const axiosSecure = UseAxios()
 
-    const { _id, ImageURL, Title, Floor, Block, ApartmentNo } = data
+    const { _id, ImageURL, Title, Floor, Block,Amount, ApartmentNo } = data
     const { user } = useContext(AuthContext)
     const email = user?.email
     const name = user?.displayName
@@ -44,11 +44,11 @@ const ApartmentCard = ({ data }) => {
 
 
     const hendleClick = (_id, ImageURL, Title, Floor, Block, ApartmentNo) => {
-        const Agreement = { ImageURL, date, Title, Floor, Block, ApartmentNo, email, name, Status };
+        const Agreement = { ImageURL, date,Amount, Title, Floor, Block, ApartmentNo, email, name, Status };
 
         axiosSecure.post("/rents", Agreement)
             .then((res) => {
-                console.log(res.data);
+                
                 if (res.data.insertedId) {
                     swal("Thanks!", "Your Agreement Is Pending !", "success");
                 }
@@ -82,6 +82,7 @@ const ApartmentCard = ({ data }) => {
                             <h3 className="text-dark dark:text-dark mb-5 text-lg font-bold">Block name. {Block}</h3>
                         </div>
                         <h3 className="text-dark dark:text-dark mb-5 text-lg font-bold">Apartment no. {ApartmentNo}</h3>
+                        <h3 className="text-dark dark:text-dark mb-5 text-lg font-bold">Amount: {Amount} $</h3>
                         {
                             user ? <>
                                 <button onClick={() => hendleClick(_id, ImageURL, Title, Floor, Block, ApartmentNo)}

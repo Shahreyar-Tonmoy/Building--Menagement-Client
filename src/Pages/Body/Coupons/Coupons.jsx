@@ -1,7 +1,55 @@
+import { Backdrop, CircularProgress } from "@mui/material";
 import HeadingTitle from "../../../Components/Hooks/HeadingTitle";
+import { useQuery } from "@tanstack/react-query";
 
 
 const Coupons = () => {
+
+
+
+
+
+  const { isPending, isError, error, data } = useQuery({
+    queryKey: ["data"],
+    queryFn: async () => {
+        const res = await fetch("http://localhost:5000/coupons",
+        
+        )
+        return res.json()
+    }
+
+})
+
+
+ 
+
+if (isPending) {
+    return <>
+        <Backdrop
+            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+            open={open}
+
+        >
+            <CircularProgress color="inherit" />
+        </Backdrop>
+    </>
+}
+
+if (isError) {
+    return <span>Error: {error.message}</span>
+}
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <div>
           <HeadingTitle title="Our Coupons"></HeadingTitle>
@@ -15,7 +63,12 @@ const Coupons = () => {
             
             
           </div>
-          <div className=" px-12 py-3 text-white rounded-lg font-semibold text-xl bg-blue-500">BD2023</div>
+          <div className=" px-12 py-3 text-white rounded-lg font-semibold text-xl bg-blue-500">{data[0]?.CouponCode}</div>
+          <div className="max-w-md">
+            <h1 className="mb-5 text-2xl text-white font-bold">To GET <span className="text-red-400">{data[0]?.DiscountPercentage}% </span>OFF</h1>
+            
+          </div>
+
         </div>
         </div>
       </div>

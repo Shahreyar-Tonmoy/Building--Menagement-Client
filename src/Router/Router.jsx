@@ -17,6 +17,10 @@ import MakeAnnouncement from "../Components/dashboard/MakeAnnouncement";
 import UserOnlyProfile from "../Components/dashboard/UserOnlyProfile";
 import MemberProfile from "../Components/dashboard/MemberProfile";
 import AnnouncementCard from "../Components/dashboard/Announcement";
+import ManageCoupons from "../Components/dashboard/ManageCoupons";
+import MakePayment from "../Components/dashboard/MakePayment";
+import PaymentHistory from "../Components/dashboard/PaymentHistory";
+
 
 
 
@@ -48,7 +52,8 @@ const Router = createBrowserRouter([
         },
         {
             path : "/apartment",
-            element : <Apartment></Apartment>
+            element : <Apartment></Apartment>,
+            loader: () => fetch("http://localhost:5000/pagination")
            
         },
         {
@@ -88,6 +93,10 @@ const Router = createBrowserRouter([
                 path : "/dashboard/makeAnnouncement",
                 element: <MakeAnnouncement></MakeAnnouncement>
             },
+            {
+                path : "/dashboard/manageCoupons",
+                element: <ManageCoupons></ManageCoupons>
+            },
             // admin end
 
             // member
@@ -95,6 +104,14 @@ const Router = createBrowserRouter([
             {
                 path : "/dashboard/member/profile",
                 element: <MemberProfile></MemberProfile>
+            },
+            {
+                path : "/dashboard/makePayment",
+                element: <MakePayment></MakePayment>
+            },
+            {
+                path : "/dashboard/paymentHistory",
+                element: <PaymentHistory></PaymentHistory>
             },
 
 

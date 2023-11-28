@@ -5,13 +5,14 @@ import { useQuery } from "@tanstack/react-query";
 
 
 const UserMember = () => {
-    const {user} = useContext(AuthContext)
+    const {user,loading} = useContext(AuthContext)
     const axiosSecure = UseAxios()
     const {data: isMember} = useQuery({
         queryKey: [user?.email, "isMember"],
+        enabled: !!user?.email && !!localStorage.getItem("access-token"),
         queryFn: async()=>{
             const res = await axiosSecure.get(`/user/member/${user?.email}`)
-            console.log(res.data);
+            // console.log(res.data);
             return res.data?.Member
         }
 

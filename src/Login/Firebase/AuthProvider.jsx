@@ -58,9 +58,9 @@ const AuthProvider = ({ children }) => {
 
             const userEmail = currentUser?.email || user?.email
             const loggedUser = {email : userEmail}
-
-            setUser(currentUser)
             setLoading(false)
+            setUser(currentUser)
+            
 
             if(currentUser){
                 const userInfo = {email: currentUser.email}
@@ -68,6 +68,7 @@ const AuthProvider = ({ children }) => {
                 .then(res =>{
                     if(res.data.token){
                         localStorage.setItem("access-token",res.data.token)
+                        setLoading(false)
                     }
                 })
                 
@@ -76,6 +77,7 @@ const AuthProvider = ({ children }) => {
             }
             else{
                localStorage.removeItem("access-token")
+               setLoading(false)
             }
 
             return () => {
@@ -86,7 +88,7 @@ const AuthProvider = ({ children }) => {
         
 
 
-    }, [axiosPublic])
+    }, [])
 
     // useEffect(() => {
     //     const unSubscribe = onAuthStateChanged(auth, currentUser => {
