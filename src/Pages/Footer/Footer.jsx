@@ -15,7 +15,7 @@ const Footer = () => {
               <div className="mb-10 w-full">
                 <a href="/#" className="mb-6 inline-block max-w-[160px]">
                   <img
-                    src="https://i.ibb.co/4pX8HKv/abstract-book-and-group-study-logo-icon-template-vector-33133567-removebg-preview-1.png"
+                    src="https://i.ibb.co/VV6F9QB/Screenshot-2023-11-23-222701-removebg-preview.png"
                     alt="logo"
                     className="max-w-full w-32 "
                   />
@@ -59,15 +59,12 @@ const Footer = () => {
 
             <LinkGroup header="Pages">
               <NavLink link="/" label="Home" />
-              <NavLink link="/assinments" label="Assignments" />
-              <NavLink link="/MyAssignment" label="My Assignments" />
-              <NavLink link="/addassinments" label="Create Assignments" />
-              <NavLink link="/submittedAssignment" label="Submitted Assignments" />
+              <NavLink link="/apartment" label="Apartment" />
+              
             </LinkGroup>
-            <LinkGroup header="Assignment">
-            <NavLink link="/assinments" label="Assignments" />
-            <NavLink link="/addassinments" label="Create Assignments" />
-              <NavLink link="/submittedAssignment" label="Submitted Assignments" />
+            <LinkGroup header="Dashboard">
+            <NavLink link="/dashboard" label="Dashboard" />
+            
             </LinkGroup>
             <LinkGroup header="Login & SignUp">
             <NavLink link="/signin" label="Sign In" />

@@ -9,10 +9,9 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Backdrop, CircularProgress } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
-import ClearIcon from '@mui/icons-material/Clear';
 
-import UseAxios from '../Hooks/UseAxios';
-import swal from 'sweetalert';
+
+
 import { useContext } from 'react';
 import { AuthContext } from '../../Login/Firebase/AuthProvider';
 
@@ -42,12 +41,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function PaymentHistory() {
 
  
-    const axiosSecure = UseAxios()
+    
 
 const {user} = useContext(AuthContext)
 
     
-const { isPending, isError, error, data,refetch } = useQuery({
+const { isPending, isError, error, data } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
         const res = await fetch("http://localhost:5000/paymentHistory",
@@ -87,19 +86,6 @@ if (isError) {
 
 
 
-const hendleDelete =(_id)=>{
-    
-    axiosSecure.delete(`/users/${_id}`)
-    .then((res)=>{
-        console.log(res.data);
-        if(res.data.deletedCount > 0){
-            swal("Thanks!", "You Are Deleted!", "success");
-            refetch()
-        }
-
-        
-    })
-}
 
 
 
@@ -129,6 +115,8 @@ const hendleDelete =(_id)=>{
             <StyledTableCell >Transaction Id</StyledTableCell>
             <StyledTableCell >Time</StyledTableCell>
             <StyledTableCell >Amount</StyledTableCell>
+            <StyledTableCell >booked</StyledTableCell>
+            <StyledTableCell >available</StyledTableCell>
             
             
           </TableRow>
@@ -144,6 +132,7 @@ const hendleDelete =(_id)=>{
               <StyledTableCell >{filter.TransactionId}</StyledTableCell>
               <StyledTableCell >{filter.Time}</StyledTableCell>
               <StyledTableCell >{filter.Price}$</StyledTableCell>
+              <StyledTableCell >{filter.Status}</StyledTableCell>
               
               
             </StyledTableRow>

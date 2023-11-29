@@ -49,16 +49,6 @@ function Navbar() {
     const { user, logOut } = useContext(AuthContext)
 
 
-    
-    
-
-
-
-
-
-
-
-
 
     const hendleSignOut = () => {
         logOut()

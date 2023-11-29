@@ -76,15 +76,21 @@ const PayForm = ({ Price, Mounth }) => {
                 const Name = user?.displayName
                 const Email = user?.email
                 const TransactionId = paymentIntent.id
+                const Status = "booked"
                 const Time = dateTime()
-                const data = { Mounth, Time,Price, TransactionId, Name, Email }
+                const data = { Mounth,Time,Price,Status,TransactionId,Name,Email }
 
                 axiosPublic.post("/paymentHistory", data)
                     .then((res) => {
+                        console.log(res.data);
                         if (res.data.insertedId) {
                             
                             swal("Thanks!", "You Are Paid Successfully!", "success")
                             navigate("/dashboard/paymentHistory")
+
+
+
+
                         }
 
                     })
