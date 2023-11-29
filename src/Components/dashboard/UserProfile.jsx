@@ -33,7 +33,7 @@ const UserProfile = () => {
 
     })
 
-    const {isPending:Pending, error:Error, data: Available } = useQuery({
+    const { isPending: Pending, error: Error, data: Available } = useQuery({
         queryKey: ["Available"],
         queryFn: async () => {
             const res = await fetch("http://localhost:5000/pagination"
@@ -46,13 +46,24 @@ const UserProfile = () => {
 
     const count = Available?.count
 
-    console.log(count)
-
-
     
+
+
+
     // console.log(count - data?.length);
 
+    const {  data: Users } = useQuery({
+        queryKey: ["Users"],
+        queryFn: async () => {
+            const res = await fetch("http://localhost:5000/users"
 
+            )
+            return res.json()
+        }
+
+    })
+    const filterUser = Users?.filter(e => e?.Role === "user")
+    const filterMember = Users?.filter(e => e?.Role === "Member")
 
 
     if (isPending) {
@@ -81,45 +92,148 @@ const UserProfile = () => {
     if (isError) {
         return <span>Error: {error.message}</span>
     }
-    if (Error) {
+    if (Error ) {
         return <span>Error: {error.message}</span>
     }
 
 
 
     return (
-        
-            <div className="h-[90vh] overflow-y-scroll">
-                <div className=" mx-auto  overflow-y-scroll h-[90vh]  rounded-lg  p-5">
-            <img className="w-32 h-32 shadow-xl rounded-full mx-auto" src={user?.photoURL} alt="Profile picture" />
-            <h2 className="text-center text-2xl font-semibold mt-3">Name: {user?.displayName}</h2>
-            <p className="text-center text-gray-600 mt-1">Email: {user?.email}</p>
 
-            <div className="mt-5">
+        <div className="h-[90vh] overflow-y-scroll">
+            <div className=" mx-auto  overflow-y-scroll h-[90vh]  rounded-lg ">
+                <img className="w-32 h-32 shadow-xl rounded-full mx-auto" src={user?.photoURL} alt="Profile picture" />
+                <h2 className="text-center text-2xl font-semibold ">Name: {user?.displayName}</h2>
+                <p className="text-center text-gray-600 mt-1">Email: {user?.email}</p>
+
                 <div>
 
-                    <section className=" ">
-                        <div className="   block  relative bg-opacity-50  z-40  ">
-                            <div className="relative mx-auto h-full px-4 sm:max-w-xl md:max-w-full  ">
-                                
-                                
-                                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
-                                    
-                                    <div className="  mt-12 lg:mt-20 flex justify-center ">
 
-                                    
-                                    <PieCharts  booked={data?.length} count={count}></PieCharts>
-                                       
-                                        <div></div>
-                                        
-                                        
+
+                    <div className="block relative bg-opacity-50  z-40  ">
+                        <div className="relative mx-auto h-full px-4 sm:max-w-xl md:max-w-full  ">
+
+
+                            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
+
+                                <div className="-mt-6 flex justify-around ">
+
+                                    <PieCharts booked={data?.length} count={count}></PieCharts>
+
+
+                                    <div>
+
+
+
+                                        <section className=" bg-blueGray-50">
+                                            <div className="w-full  px-4 mx-auto mt-24">
+                                                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white ">
+                                                    
+                                                    <div className="block w-full overflow-x-auto">
+                                                        <table className="items-center w-full border-collapse text-blueGray-700  ">
+                                                            <thead className="thead-light ">
+                                                                <tr>
+                                                                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                        User & Member
+                                                                    </th>
+                                                                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                        Count
+                                                                    </th>
+                                                                    <th className="px-6 bg-blueGray-50 text-blueGray-700 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px" />
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                                                        User
+                                                                    </th>
+                                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                                                                    {filterUser?.length}
+                                                                    </td>
+                                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                                
+                                                               
+                                                                <tr>
+                                                                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                                                        Member
+                                                                    </th>
+                                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                                       
+                                                                       {filterMember?.length}
+
+                                                                    </td>
+                                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </section>
+                                        <section className=" bg-blueGray-50">
+                                            <div className="w-full  px-4 mx-auto ">
+                                                <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white ">
+                                                    
+                                                    <div className="block w-full overflow-x-auto">
+                                                        <table className="items-center w-full border-collapse text-blueGray-700  ">
+                                                            <thead className="thead-light ">
+                                                                <tr>
+                                                                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                        Total Rooms
+                                                                    </th>
+                                                                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                                                        Count
+                                                                    </th>
+                                                                    <th className="px-6 bg-blueGray-50 text-blueGray-700 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px" />
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                
+                                                                
+                                                               
+                                                                <tr>
+                                                                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                                                        Rooms
+                                                                    </th>
+                                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                                        {count}
+                                                                    </td>
+                                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </section>
+
                                     </div>
+
                                 </div>
                             </div>
-                        </div></section>
+                        </div>
+                    </div>
+
+
 
                 </div>
+
+
             </div>
+
+
+
+
+
 
 
         </div>
@@ -128,16 +242,8 @@ const UserProfile = () => {
 
 
 
-                
-
-            </div>
 
 
-     
-
-
-
-        
 
 
 
