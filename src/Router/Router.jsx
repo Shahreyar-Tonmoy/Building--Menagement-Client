@@ -53,7 +53,7 @@ const Router = createBrowserRouter([
         {
             path : "/apartment",
             element : <Apartment></Apartment>,
-            loader: () => fetch("http://localhost:5000/pagination")
+            loader: () => fetch("https://assignment-12-server-side-gules.vercel.app/pagination")
            
         },
         {

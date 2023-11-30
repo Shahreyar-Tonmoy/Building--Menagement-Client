@@ -50,7 +50,7 @@ export default function AgreementRequest() {
 const { isPending, isError, error, data,refetch } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
-        const res = await fetch("http://localhost:5000/rents")
+        const res = await fetch("https://assignment-12-server-side-gules.vercel.app/rents")
         return res.json()
     }
 

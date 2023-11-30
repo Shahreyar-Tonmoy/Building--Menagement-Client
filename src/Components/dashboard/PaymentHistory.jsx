@@ -49,7 +49,7 @@ export default function PaymentHistory() {
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/paymentHistory",
+      const res = await fetch("https://assignment-12-server-side-gules.vercel.app/paymentHistory",
 
       )
       return res.json()

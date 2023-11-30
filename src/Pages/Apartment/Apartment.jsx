@@ -45,7 +45,7 @@ const Apartment = () => {
     const { isPending, isError, error, data } = useQuery({
         queryKey: ["data", currentPage, itemsPerPage],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/apartments?page=${currentPage}&size=${itemsPerPage}`)
+            const res = await fetch(`https://assignment-12-server-side-gules.vercel.app/apartments?page=${currentPage}&size=${itemsPerPage}`)
             return res.json()
         }
 

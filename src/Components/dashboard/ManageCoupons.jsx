@@ -58,7 +58,7 @@ export default function ManageCoupons() {
     const { isPending, isError, error, data, refetch } = useQuery({
         queryKey: ["data"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/coupons",
+            const res = await fetch("https://assignment-12-server-side-gules.vercel.app/coupons",
 
             )
             return res.json()

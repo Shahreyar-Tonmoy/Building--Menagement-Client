@@ -11,7 +11,7 @@ const UserOnlyProfile = () => {
     const { isPending, isError, error, data } = useQuery({
         queryKey: ["data"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/rents/${user?.email}`)
+            const res = await fetch(`https://assignment-12-server-side-gules.vercel.app/rents/${user?.email}`)
             return res.json()
         }
 

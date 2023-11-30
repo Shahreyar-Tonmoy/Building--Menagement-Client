@@ -25,7 +25,7 @@ const UserProfile = () => {
     const { isPending, isError, error, data } = useQuery({
         queryKey: ["data"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/status",
+            const res = await fetch("https://assignment-12-server-side-gules.vercel.app/status",
 
             )
             return res.json()
@@ -36,7 +36,7 @@ const UserProfile = () => {
     const { isPending: Pending, error: Error, data: Available } = useQuery({
         queryKey: ["Available"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/pagination"
+            const res = await fetch("https://assignment-12-server-side-gules.vercel.app/pagination"
 
             )
             return res.json()
@@ -55,7 +55,7 @@ const UserProfile = () => {
     const {  data: Users } = useQuery({
         queryKey: ["Users"],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/users"
+            const res = await fetch("https://assignment-12-server-side-gules.vercel.app/users"
 
             )
             return res.json()
