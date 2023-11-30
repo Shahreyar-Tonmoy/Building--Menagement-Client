@@ -248,7 +248,7 @@ const MakePayment = () => {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box className="lg:w-1/3 w-3/4 ml-[84px] lg:ml-0 mt-40 mx-auto rounded-2xl glass bg-slate-300">
+                    <Box className="lg:w-1/3 w-3/4 ml-[84px] lg:mx-auto mt-40 mx-auto rounded-2xl glass bg-slate-300">
                         <Payments prices={price} mounth={mounth}></Payments>
                     </Box>
                 </Modal>

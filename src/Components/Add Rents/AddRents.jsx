@@ -92,6 +92,16 @@ const AddRents = () => {
                                 <option>C</option>
                                 <option>D</option>
                                 <option>E</option>
+                                <option>F</option>
+                                <option>G</option>
+                                <option>H</option>
+                                <option>I</option>
+                                <option>J</option>
+                                <option>K</option>
+                                <option>L</option>
+                                <option>M</option>
+                                <option>N</option>
+                                <option>O</option>
                                 
                                 
 
@@ -108,6 +118,17 @@ const AddRents = () => {
                                 <option>3</option>
                                 <option>4</option>
                                 <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                
                                 
                                 
 
@@ -119,11 +140,23 @@ const AddRents = () => {
 
                             <select name='ApartmentNo' className="select select-bordered lg:w-[500px] ">
                                 <option disabled selected>Apartment no</option>
-                                <option>305</option>
-                                <option>409</option>
-                                <option>154</option>
-                                <option>880</option>
-                                <option>605</option>
+                                <option>101</option>
+                                <option>202</option>
+                                <option>303</option>
+                                <option>404</option>
+                                <option>505</option>
+                                <option>606</option>
+                                <option>707</option>
+                                <option>808</option>
+                                <option>909</option>
+                                <option>1010</option>
+                                <option>1111</option>
+                                <option>1212</option>
+                                <option>1313</option>
+                                <option>1414</option>
+                                <option>1515</option>
+                                
+                                
                                 
                                 
 
