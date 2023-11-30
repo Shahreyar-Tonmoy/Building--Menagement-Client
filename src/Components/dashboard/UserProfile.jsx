@@ -116,7 +116,7 @@ const UserProfile = () => {
 
                             <div className=" sm:px-6  relative">
 
-                                <div className="-mt-6 lg:flex justify-around ">
+                                <div className="-mt-6 md:flex justify-around ">
 
                                     <PieCharts booked={data?.length} count={count}></PieCharts>
 

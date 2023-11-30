@@ -64,7 +64,7 @@ const UserOnlyProfile = () => {
                                         {
                                             filter.length > 0 && 
                                             
-                                            <div className="transition-all lg:w-96 -ml-3 w-64 lg:mx-auto  duration-1000 shadow-2xl bg-white hover:bg-blue-500  hover:shadow-xl  relative z-40 group  ">
+                                            <div className="transition-all md:w-96 -ml-3 w-64 md:mx-auto  duration-1000 shadow-2xl bg-white hover:bg-blue-500  hover:shadow-xl  relative z-40 group  ">
                                             <div className=" absolute  bg-blue-500/50 top-0 left-0 w-24 h-1 z-30  transition-all duration-200   group-hover:bg-white group-hover:w-1/2  ">
                                             </div>
                                             <div className="py-2 px-9 relative  ">
