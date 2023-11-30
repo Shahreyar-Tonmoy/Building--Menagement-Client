@@ -111,8 +111,9 @@ const MakePayment = () => {
 
     return (
 
-        <div className="flex items-center justify-center bg-slate-300 -mt-4 w-2/4 mx-auto rounded-xl glass shadow-xl p-12">
-            <div className="mx-auto w-full max-w-[550px]">
+       <div className="h-[90vh] overflow-y-scroll">
+         <div className="flex items-center justify-center bg-slate-300 -mt-4 lg:w-2/4 mx-auto rounded-xl glass shadow-xl p-12">
+            <div className="mx-auto w-full lg:max-w-[550px]">
                 <form onSubmit={hendleSubmit}>
                     <div className="-mx-3 flex flex-wrap">
                         <div className="w-full px-3 sm:w-1/2">
@@ -247,7 +248,7 @@ const MakePayment = () => {
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
-                    <Box className="w-1/3 mt-40 mx-auto rounded-2xl glass bg-slate-300">
+                    <Box className="lg:w-1/3 w-3/4 ml-[84px] lg:ml-0 mt-40 mx-auto rounded-2xl glass bg-slate-300">
                         <Payments prices={price} mounth={mounth}></Payments>
                     </Box>
                 </Modal>
@@ -255,6 +256,7 @@ const MakePayment = () => {
 
             </div>
         </div>
+       </div>
 
     )
 };

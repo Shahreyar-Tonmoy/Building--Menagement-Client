@@ -40,47 +40,47 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function PaymentHistory() {
 
- 
-    
 
-const {user} = useContext(AuthContext)
 
-    
-const { isPending, isError, error, data } = useQuery({
+
+  const { user } = useContext(AuthContext)
+
+
+  const { isPending, isError, error, data } = useQuery({
     queryKey: ["data"],
     queryFn: async () => {
-        const res = await fetch("http://localhost:5000/paymentHistory",
-        
-        )
-        return res.json()
+      const res = await fetch("http://localhost:5000/paymentHistory",
+
+      )
+      return res.json()
     }
 
-})
+  })
 
-// console.log(data);
+  // console.log(data);
 
-const filter = data?.filter(e => e.Email === user?.email )
-// console.log(filter);
+  const filter = data?.filter(e => e.Email === user?.email)
+  // console.log(filter);
 
 
-// console.log(data);
- 
+  // console.log(data);
 
-if (isPending) {
+
+  if (isPending) {
     return <>
-        <Backdrop
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={open}
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
 
-        >
-            <CircularProgress color="inherit" />
-        </Backdrop>
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
-}
+  }
 
-if (isError) {
+  if (isError) {
     return <span>Error: {error.message}</span>
-}
+  }
 
 
 
@@ -101,62 +101,66 @@ if (isError) {
   return (
 
     <>
-    {
+      {
         filter.length > 0 ? <>
-        <TableContainer component={Paper}>
-      
-      
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell >Email</StyledTableCell>
-            <StyledTableCell >Mounth</StyledTableCell>
-            <StyledTableCell >Transaction Id</StyledTableCell>
-            <StyledTableCell >Time</StyledTableCell>
-            <StyledTableCell >Amount</StyledTableCell>
-            <StyledTableCell >Status</StyledTableCell>
-            
-            
-            
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {filter?.map((filter) => (
-            <StyledTableRow key={filter._id}>
-              <StyledTableCell component="th" scope="row">
-                {filter.Name}
-              </StyledTableCell>
-              <StyledTableCell >{filter.Email}</StyledTableCell>
-              <StyledTableCell >{filter.Mounth}</StyledTableCell>
-              <StyledTableCell >{filter.TransactionId}</StyledTableCell>
-              <StyledTableCell >{filter.Time}</StyledTableCell>
-              <StyledTableCell >{filter.Price}$</StyledTableCell>
-              <StyledTableCell >{filter.Status}</StyledTableCell>
-              
-              
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-      </TableContainer>
-        </> :<>
-         
-         <div className='flex justify-center items-center'>
-         <div>
-            <img src="https://i.ibb.co/RT3f8bk/undraw-Server-re-twwj-removebg-preview.png" alt="" />
-            <h1 className='text-3xl font-semibold text-center'>No Member Found !!!</h1>
-         </div>
-         </div>
-        
+          <div className='h-[90vh] overflow-y-scroll'>
+
+          <TableContainer component={Paper}>
+
+
+<Table sx={{ minWidth: 700 }} aria-label="customized table">
+  <TableHead>
+    <TableRow>
+      <StyledTableCell>Name</StyledTableCell>
+      <StyledTableCell >Email</StyledTableCell>
+      <StyledTableCell >Mounth</StyledTableCell>
+      <StyledTableCell >Transaction Id</StyledTableCell>
+      <StyledTableCell >Time</StyledTableCell>
+      <StyledTableCell >Amount</StyledTableCell>
+      <StyledTableCell >Status</StyledTableCell>
+
+
+
+    </TableRow>
+  </TableHead>
+  <TableBody>
+    {filter?.map((filter) => (
+      <StyledTableRow key={filter._id}>
+        <StyledTableCell component="th" scope="row">
+          {filter.Name}
+        </StyledTableCell>
+        <StyledTableCell >{filter.Email}</StyledTableCell>
+        <StyledTableCell >{filter.Mounth}</StyledTableCell>
+        <StyledTableCell >{filter.TransactionId}</StyledTableCell>
+        <StyledTableCell >{filter.Time}</StyledTableCell>
+        <StyledTableCell >{filter.Price}$</StyledTableCell>
+        <StyledTableCell >{filter.Status}</StyledTableCell>
+
+
+      </StyledTableRow>
+    ))}
+  </TableBody>
+</Table>
+</TableContainer>
+
+          </div>
+        </> : <>
+
+          <div className='flex justify-center items-center'>
+            <div>
+              <img src="https://i.ibb.co/RT3f8bk/undraw-Server-re-twwj-removebg-preview.png" alt="" />
+              <h1 className='text-3xl font-semibold text-center'>No Member Found !!!</h1>
+            </div>
+          </div>
+
         </>
       }
-    
+
     </>
 
 
-    
-  );
+
+  )
 }
 
 

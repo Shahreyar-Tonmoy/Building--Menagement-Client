@@ -42,29 +42,29 @@ const UserOnlyProfile = () => {
 
     return (
 
-        <div className=" mx-auto  overflow-y-scroll h-[90vh]  rounded-lg  p-5">
+        <div className=" mx-auto  overflow-y-scroll h-[90vh]  rounded-lg  ">
             <img className="w-32 h-32 shadow-xl rounded-full mx-auto" src={user?.photoURL} alt="Profile picture" />
             <h2 className="text-center text-2xl font-semibold mt-3">Name: {user?.displayName}</h2>
             <p className="text-center text-gray-600 mt-1">Email: {user?.email}</p>
 
-            <div className="mt-5">
+            <div className="">
                 <div>
 
                     <section className=" ">
                         <div className="   block  relative bg-opacity-50  z-40  ">
-                            <div className="relative mx-auto h-full px-4 pb-20   md:pb-10 sm:max-w-xl md:max-w-full  ">
+                            <div className="relative mx-auto h-full px-4 md:pb-10 sm:max-w-xl md:max-w-full  ">
                                 
                                 
-                                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
+                                <div className=" mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
                                     
-                                    <div className="  mt-12 lg:mt-20   ">
+                                    <div className=" mt-3 lg:mt-20   ">
 
                                     
                                         
                                         {
                                             filter.length > 0 && 
                                             
-                                            <div className="transition-all w-96 mx-auto  duration-1000 shadow-2xl bg-white hover:bg-blue-500  hover:shadow-xl m-2 p-4 relative z-40 group  ">
+                                            <div className="transition-all lg:w-96 -ml-3 w-64 lg:mx-auto  duration-1000 shadow-2xl bg-white hover:bg-blue-500  hover:shadow-xl  relative z-40 group  ">
                                             <div className=" absolute  bg-blue-500/50 top-0 left-0 w-24 h-1 z-30  transition-all duration-200   group-hover:bg-white group-hover:w-1/2  ">
                                             </div>
                                             <div className="py-2 px-9 relative  ">
