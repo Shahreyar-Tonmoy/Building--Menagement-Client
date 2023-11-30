@@ -115,8 +115,8 @@ if (isError) {
             <StyledTableCell >Transaction Id</StyledTableCell>
             <StyledTableCell >Time</StyledTableCell>
             <StyledTableCell >Amount</StyledTableCell>
-            <StyledTableCell >booked</StyledTableCell>
-            <StyledTableCell >available</StyledTableCell>
+            <StyledTableCell >Status</StyledTableCell>
+            
             
             
           </TableRow>

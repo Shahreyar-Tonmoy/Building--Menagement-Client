@@ -114,9 +114,9 @@ const UserProfile = () => {
                         <div className="relative mx-auto h-full px-4 sm:max-w-xl md:max-w-full  ">
 
 
-                            <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 relative">
+                            <div className=" sm:px-6  relative">
 
-                                <div className="-mt-6 flex justify-around ">
+                                <div className="-mt-6 lg:flex justify-around ">
 
                                     <PieCharts booked={data?.length} count={count}></PieCharts>
 
@@ -126,7 +126,7 @@ const UserProfile = () => {
 
 
                                         <section className=" bg-blueGray-50">
-                                            <div className="w-full  px-4 mx-auto mt-24">
+                                            <div className="w-full   mx-auto mt-24">
                                                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white ">
                                                     
                                                     <div className="block w-full overflow-x-auto">
@@ -139,7 +139,7 @@ const UserProfile = () => {
                                                                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                                                         Count
                                                                     </th>
-                                                                    <th className="px-6 bg-blueGray-50 text-blueGray-700 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px" />
+                                                                    
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -150,9 +150,7 @@ const UserProfile = () => {
                                                                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
                                                                     {filterUser?.length}
                                                                     </td>
-                                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                                                        
-                                                                    </td>
+                                                                    
                                                                 </tr>
                                                                 
                                                                
@@ -165,9 +163,7 @@ const UserProfile = () => {
                                                                        {filterMember?.length}
 
                                                                     </td>
-                                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                                                        
-                                                                    </td>
+                                                                   
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -177,7 +173,7 @@ const UserProfile = () => {
                                             
                                         </section>
                                         <section className=" bg-blueGray-50">
-                                            <div className="w-full  px-4 mx-auto ">
+                                            <div className="w-full   mx-auto ">
                                                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white ">
                                                     
                                                     <div className="block w-full overflow-x-auto">
@@ -190,7 +186,7 @@ const UserProfile = () => {
                                                                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                                                         Count
                                                                     </th>
-                                                                    <th className="px-6 bg-blueGray-50 text-blueGray-700 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px" />
+                                                                    
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -204,9 +200,7 @@ const UserProfile = () => {
                                                                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                                                         {count}
                                                                     </td>
-                                                                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                                                        
-                                                                    </td>
+                                                                    
                                                                 </tr>
                                                             </tbody>
                                                         </table>

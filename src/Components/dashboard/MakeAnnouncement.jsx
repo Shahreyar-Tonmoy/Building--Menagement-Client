@@ -51,14 +51,14 @@ const MakeAnnouncement = () => {
   <div className="container">
     <div className="flex flex-wrap lg:justify-between -mx-4">
       <div className="w-full lg:w-1/2 xl:w-6/12 px-4">
-        <div className="max-w-[570px] mt-52 ml-32 lg:mb-0">
+        <div className="max-w-[570px] lg:mt-52 lg:ml-32 lg:mb-0">
           
           <h2 className="
             text-red-500
             
             uppercase
             font-bold
-            text-[32px]
+            text-[20px]
             sm:text-[40px]
             lg:text-[36px]
             xl:text-[40px]
@@ -68,7 +68,7 @@ const MakeAnnouncement = () => {
           
         </div>
       </div>
-      <div className="w-full mt-20  lg:w-1/2 xl:w-5/12 px-4">
+      <div className="w-full lg:mt-20  lg:w-1/2 xl:w-5/12 px-4">
         <div className=" relative glass bg-slate-200  rounded-lg p-8 sm:p-12 shadow-xl">
           <form onSubmit={hendleAnnounce}>
             <div className="mb-6">

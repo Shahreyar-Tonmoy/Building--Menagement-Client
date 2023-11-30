@@ -37,23 +37,7 @@ const renderCustomizedLabel = ({
 export default function PieCharts({booked,count}) {
   
   
-  
- 
-  
 
-
-  
-  
-  
-
-
- 
-
-
-
-
-
-  
   const data = [
     { name: "Booked", value: booked },
     { name: "Available", value: count },
@@ -64,14 +48,16 @@ export default function PieCharts({booked,count}) {
  
 
   return (
-    <PieChart width={500} height={500}>
+    <div className=" ">
+      <PieChart className=" -ml-64 " width={500} height={500}>
       <Pie
+        
         data={data}
-        cx={280}
+        cx={360}
         cy={250}
         labelLine={false}
         label={renderCustomizedLabel}
-        outerRadius={150}
+        outerRadius={100}
         fill="#8884d8"
         dataKey="value"
       >
@@ -82,5 +68,6 @@ export default function PieCharts({booked,count}) {
       <Legend />
       <Tooltip />
     </PieChart>
+    </div>
   );
 }

@@ -15,7 +15,7 @@ import UseAxios from '../Hooks/UseAxios';
 import swal from 'sweetalert';
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+
 
 import Modal from '@mui/material/Modal';
 
@@ -66,13 +66,7 @@ export default function ManageCoupons() {
 
     })
 
-    // console.log(data);
-
-
-    // console.log(filter);
-
-
-    // console.log(data);
+    
 
 
     if (isPending) {
@@ -141,7 +135,7 @@ export default function ManageCoupons() {
         <div className='lg:flex overflow-y-scroll h-[90vh]  justify-around  '>
             <div>
             {
-                data.length > 0 ? <>
+                data?.length > 0 &&
                     <TableContainer component={Paper}>
 
 
@@ -158,12 +152,12 @@ export default function ManageCoupons() {
                             </TableHead>
                             <TableBody >
                                 {data?.map((filter) => (
-                                    <StyledTableRow key={filter.name}>
+                                    <StyledTableRow key={filter?._id}>
                                         <StyledTableCell component="th" scope="row">
-                                            {filter.CouponCode}
+                                            {filter?.CouponCode}
                                         </StyledTableCell>
-                                        <StyledTableCell >{filter.DiscountPercentage}</StyledTableCell>
-                                        <StyledTableCell ><p className='w-[600px] break-words'>{filter.CouponDescription}</p></StyledTableCell>
+                                        <StyledTableCell >{filter?.DiscountPercentage}</StyledTableCell>
+                                        <StyledTableCell ><p className='w-[600px] break-words'>{filter?.CouponDescription}</p></StyledTableCell>
 
 
 
@@ -176,23 +170,24 @@ export default function ManageCoupons() {
 
 
 
-                </> : <>
-
-                    <div className='flex justify-center items-center'>
-                        <div className='flex flex-col justify-center items-center'>
-                            <img src="https://i.ibb.co/RT3f8bk/undraw-Server-re-twwj-removebg-preview.png" alt="" />
-                            <h1 className='text-3xl font-semibold text-center'>No coupons Found !!!</h1>
-
-
-
-                           
-
-                        </div>
-
-                    </div>
-
-                </>
+                
             }
+
+            {
+                data?.length <= 0 && <div className='flex justify-center items-center'>
+                <div className='flex flex-col justify-center items-center'>
+                    <img src="https://i.ibb.co/RT3f8bk/undraw-Server-re-twwj-removebg-preview.png" alt="" />
+                    <h1 className='text-3xl font-semibold text-center'>No coupons Found !!!</h1>
+
+
+
+                   
+
+                </div>
+
+            </div>
+            }
+
             </div>
 
             <div>
