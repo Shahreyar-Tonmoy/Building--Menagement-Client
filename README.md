@@ -1,12 +1,9 @@
 
 
-<a className="text-2xl text-red-500" href="https://comfy-eclair-fabcdd.netlify.app/">Live Link</a>
+<a className="text-2xl text-red-500" href="https://comfy-eclair-fabcdd.netlify.app/">Live Side Link</a>
 
 
- <p><span>Live link</span>https://comfy-eclair-fabcdd.netlify.app/</p>
-
-
-
+<a className="text-2xl text-red-500" href="https://github.com/Shahreyar-Tonmoy/Building--Menagement-Server">Server Side Github Link </a>
 
 
 
