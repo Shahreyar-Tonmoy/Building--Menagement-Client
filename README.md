@@ -5,7 +5,11 @@
 
 <a className="text-2xl text-red-500" href="https://github.com/Shahreyar-Tonmoy/Building--Menagement-Server">Server Side Github Link </a>
 
+Technology Used: Rect.js, Node.js, Express.js, Mongodb, Tailwind Css, Firebase, Material UI
 
+
+
+Features:
 
 1. Real-time Monitoring and Alerts:
 
