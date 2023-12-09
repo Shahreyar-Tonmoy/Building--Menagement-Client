@@ -1,15 +1,19 @@
 
-
+<h1 align="left">Live Side Link:</h1>
 <a className="text-2xl text-red-500" href="https://comfy-eclair-fabcdd.netlify.app/">Live Side Link</a>
 
-
+<h1 align="left">Server Side Github Link:</h1>
 <a className="text-2xl text-red-500" href="https://github.com/Shahreyar-Tonmoy/Building--Menagement-Server">Server Side Github Link </a>
+<h1 align="left">Technology Used:</h1>
+ Rect.js, Node.js, Express.js, Mongodb, Tailwind Css, Firebase, Material UI
 
-Technology Used: Rect.js, Node.js, Express.js, Mongodb, Tailwind Css, Firebase, Material UI
+<h1 align="left">Description:</h1>
+BuildSync Hub is a online building management system. User can agreement for rents. If owner or admin accepted users agreements then user convert in member. Member can pay with stripe payment getaway
 
 
 
-Features:
+
+<h1 align="left">Features:</h1>
 
 1. Real-time Monitoring and Alerts:
 
