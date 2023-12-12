@@ -1,6 +1,6 @@
 
 <h1 align="left">Live Side Link:</h1>
-<a className="text-2xl text-red-500" href="https://comfy-eclair-fabcdd.netlify.app/">Live Side Link</a>
+<a className="text-2xl text-red-500" href="https://illustrious-maamoul-dce5d4.netlify.app/">Live Side Link</a>
 
 <h1 align="left">Server Side Github Link:</h1>
 <a className="text-2xl text-red-500" href="https://github.com/Shahreyar-Tonmoy/Building--Menagement-Server">Server Side Github Link </a>
